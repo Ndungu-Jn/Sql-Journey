@@ -14,4 +14,8 @@ INNER JOIN employee_salary  AS salary                   -- returns rows that are
 	ON demographics.employee_id = salary.employee_id;   -- the key  word ON is used to specify to which table to combine. 
 
 
--- OUTER JOIN --    
+-- OUTER JOIN --   retrieves all records from the left table and only the matching records from the right table. If there is no match, NULL values are returned for the right table’s columns.  
+SELECT *
+FROM employee_demographics AS demographics 				
+RIGHT JOIN employee_salary AS salary 					
+	ON demographics.employee_id = salary.employee_id 
