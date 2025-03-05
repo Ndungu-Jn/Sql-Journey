@@ -31,3 +31,16 @@ emp2.last_name AS last_name_emp
 FROM employee_salary emp1
 JOIN employee_salary emp2
 	ON emp1.employee_id + 1 = emp2.employee_id;
+
+
+-- Joining multiple tables together --   
+
+SELECT *
+FROM employee_demographics AS demographics 				 
+INNER JOIN employee_salary AS salary 					 
+	ON demographics.employee_id = salary.employee_id  
+INNER JOIN parks_departments AS pd
+	ON salary.dept_id = pd.department_id;
+    
+SELECT *
+FROM parks_departments;   
