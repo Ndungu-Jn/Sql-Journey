@@ -22,3 +22,15 @@ SUBSTRING(first_name, 3,2), -- takes the  characters at the specific position. i
 birth_date,
 SUBSTRING(birth_date, 6,2) AS birth_month
 FROM employee_demographics;
+
+SELECT first_name, REPLACE(first_name, 'a','z')  -- specifies what we want to replace and replaces.
+FROM employee_demographics;
+
+SELECT LOCATE('x', 'alexander');
+
+SELECT first_name, LOCATE('An',first_name)
+FROM employee_demographics;
+
+SELECT first_name, last_name,
+CONCAT(first_name," ",last_name) AS full_name  -- Joins two columns
+FROM employee_demographics;
