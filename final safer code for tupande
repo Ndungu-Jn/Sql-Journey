@@ -1,0 +1,75 @@
+<!-- Header Section with Company Letterhead on the Left and Sales Invoice on the Right -->
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Company Letterhead Section with Grey Background -->
+    <div style="border: 2px; border-radius: 15px; padding: 15px; background-color: #A0AFB7; display: inline-block; width: fit-content;">
+        <!-- Company Name -->
+        <h2>{{ doc.company }}</h2>
+    </div>
+
+    <!-- Sales Invoice Header -->
+    <div style="text-align: right;">
+        <h3>SALES INVOICE</h3>
+        <p>Invoice Date: {{ doc.posting_date }}</p>
+    </div>
+</div>
+
+<!-- Sales Invoice Number -->
+<div style="margin-top: 20px;">
+    <p style="text-align: right;"><strong>Sales Invoice Number: </strong></p>
+    <p style="text-align: right;">{{ doc.name }} </p>
+</div>
+
+<!-- Customer Information -->
+<div style="margin-top: 20px;">
+    <h3>Customer Information</h3>
+    <p><strong>Customer Name:</strong> {{ doc.customer_name }}</p>
+</div>
+
+<!-- Items Table -->
+<table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Qty</strong></th>
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Unit Price</strong></th>
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Amount</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in doc.items %}
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ item.item_name }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ item.qty }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">{{ item.rate }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">{{ item.amount }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Totals Section -->
+<div style="margin-top: 20px; text-align: right;">
+    <!-- Subtotal -->
+    <p style="border-bottom: 1px solid #ddd; padding: 8px 0; margin: 0; display: inline-block; width: fit-content;">
+        <strong>Subtotal:</strong>
+        <span style="margin-left: 200px">{{doc.net_total }}</span>
+    </p>
+
+    <!-- TOTAL KES -->
+    <p >
+        <strong>TOTAL KES:</strong>
+        <span style="margin-left: 180px; margin-top:10px">{{doc.grand_total }}</span>
+    </p>
+
+    <!-- Less Amount Paid -->
+    <p style="border-bottom: 1px solid #ddd; padding: 8px 0; margin: 0; display: inline-block; width: fit-content;" >
+        <strong>Less Amount Paid:</strong>
+        <span style="margin-left: 168px">{{ doc.paid_amount }}</span>
+    </p>
+
+    <!-- AMOUNT DUE -->
+    <p >
+        <strong>AMOUNT DUE:</strong>
+        <span style="margin-left: 165px">{{ doc.outstanding_amount }}</span>
+    </p>
+</div>
