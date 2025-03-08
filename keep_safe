@@ -1,0 +1,59 @@
+<div style="text-align: right;">
+    <h1>SALES INVOICE</h1>
+    <p>Invoice Date: {{ doc.posting_date }}</p>
+</div>
+
+<!-- Company Letterhead Section -->
+<div style="margin-top: 20px; border-bottom: 2px solid #000; padding-bottom: 10px;">
+    <!-- Company Logo -->
+    <div style="float: left; width: 20%;">
+        <img src="/path/to/your/logo.png" alt="Company Logo" style="width: 100px; height: auto;">
+    </div>
+
+    <!-- Company Name -->
+    <div style="float: left; width: 80%; text-align: left;">
+        <h2>{{ doc.company }}</h2>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<!-- Sales Invoice Number -->
+<div style="margin-top: 20px;">
+    <p style="text-align: right;">Sales Invoice Number: {{ doc.name }}</p>
+</div>
+
+<!-- Customer Information -->
+<div style="margin-top: 20px;">
+    <h3>Customer Information</h3>
+    <p><strong>Customer Name:</strong> {{ doc.customer_name }}</p>
+</div>
+
+<!-- Items Table -->
+<table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Qty</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Unit Price</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in doc.items %}
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ item.item_name }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ item.qty }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">{{ item.rate }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">{{ item.amount }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Totals Section -->
+<div style="margin-top: 20px; text-align: right;">
+    <p><strong>Subtotal:</strong> {{ doc.net_total }}</p>
+    <p><strong>TOTAL KES:</strong> {{ doc.grand_total }}</p>
+    <p><strong>Less Amount Paid:</strong> {{ doc.paid_amount }}</p>
+    <p><strong>AMOUNT DUE:</strong> {{ doc.outstanding_amount }}</p>
+</div>
