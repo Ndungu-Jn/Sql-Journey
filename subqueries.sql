@@ -17,3 +17,13 @@ FROM employee_salary;
 SELECT gender, AVG(age), MAX(age), MIN(age), COUNT(age)
 FROM employee_demographics
 GROUP BY gender;
+
+SELECT  AVG(max_age)
+FROM
+(SELECT gender, 
+AVG(age) AS avg_age, 
+MAX(age) AS max_age, 
+MIN(age) AS min_age, 
+COUNT(age)
+FROM employee_demographics
+GROUP BY gender) AS agg_table
