@@ -17,3 +17,9 @@ SUM(salary) OVER(PARTITION BY gender ORDER BY dem.employee_id )  AS Rolling_Tota
 FROM employee_demographics AS dem
 JOIN employee_salary AS sal
 	ON dem.employee_id = sal.employee_id  
+
+SELECT dem.employee_id, dem.first_name, dem.last_name, gender, salary,
+ROW_NUMBER() OVER(PARTITION BY gender ORDER  BY salary DESC)
+FROM employee_demographics AS dem
+JOIN employee_salary AS sal
+	ON dem.employee_id = sal.employee_id     -- partitions and gets from highest to lowest.
