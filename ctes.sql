@@ -1,7 +1,8 @@
 -- CTEs -- common table expressions -- just like subqueries but more standerdized
 -- the key word is WITH and can only be used after you create it
+-- Basically its creating a temporary table and then querying from it.
 
-WITH CTE_Example AS
+WITH CTE_Example AS  -- CTEs are way better.use this insteadof subqueries.
 (
 SELECT gender, AVG(salary) avg_sal, MAX(salary) max_sal, MIN(salary) min_sal, COUNT(salary) count_sal
 FROM employee_demographics dem
@@ -12,4 +13,29 @@ GROUP BY gender
 
 SELECT AVG(avg_sal)    -- makes the calculations super fast
 FROM CTE_example;
+
+
+
+-- this  does the same thing but the syntax is a bit hard to comprehend. CTEs comes easier.
+SELECT AVG(avg_sal)
+FROM(
+SELECT gender, AVG(salary) avg_sal, MAX(salary) max_sal, MIN(salary) min_sal, COUNT(salary) count_sal
+FROM employee_demographics dem
+JOIN employee_salary sal
+	ON dem.employee_id = sal.employee_id
+GROUP BY gender
+) example_subquery
+;
+
     
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+  
