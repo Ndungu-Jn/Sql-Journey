@@ -13,3 +13,16 @@ VALUES('John', 'Ndungu', 'Pirate of the Carebean' );
 
 SELECT *
 FROM temp_table;
+
+-- MEHTOD 2
+
+SELECT *
+FROM employee_salary;
+
+CREATE TEMPORARY TABLE salary_over_50k  -- name the way that its easy to identify.
+SELECT *
+FROM employee_salary
+WHERE salary > 50000;
+
+SELECT *
+FROM salary_over_50k;
