@@ -28,3 +28,19 @@ END $$
 DELIMITER ;
 
 CALL large_salaries3()
+
+
+-- parameters
+DELIMITER $$
+
+CREATE PROCEDURE large_salaries5(employee_id_param INT)
+BEGIN
+	SELECT salary
+	FROM employee_salary
+    WHERE employee_id = employee_id_param;
+
+	
+END $$
+DELIMITER ;
+
+CALL large_salaries5(1)
