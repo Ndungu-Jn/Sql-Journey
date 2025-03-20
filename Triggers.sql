@@ -20,4 +20,19 @@ INSERT INTO employee_salary (employee_id, first_name, last_name, occupation, sal
 VALUES(13, 'Mark', 'Kamau', 'Agentic CTO', '1000000', NULL);
 
 
+-- EVENTS -- TAKES PLACE WHEN IT SCHEDULED.
+--  for example, if someone is above 60 years, the time  for retirement has reached.
 
+SELECT * 
+FROM employee_demographics;
+
+DELIMITER $$
+CREATE EVENT delete_retired_people
+ON SCHEDULE EVERY 30 SECOND
+DO
+BEGIN
+	DELETE
+	FROM employee_demographics
+    WHERE AGE >= 60;
+END $$
+DELIMITER ;
